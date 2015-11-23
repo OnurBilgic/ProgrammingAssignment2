@@ -1,28 +1,28 @@
 ## 4 part set ,get ,setcache,getcache
-
+ 
+## I'm getting x which is a square and inversible . Otherwise it can not work. 
 
 makeCacheMatrix <- function(x = matrix()){
-  m <- NULL
-  set <- function(y) {
+  m <- NULL ## m solve value 
+  set <- function(y) {  ## cache values for x and m 
   x <<- y
   m <<- NULL
    }
-   get <- function(){x}
-   setcache <- function(){
-     m <- solve(x)}
-   getcache <- function(){m} 
-   list(set = set, get = get,
+   get <- function(){x} ## where x is stored
+   setcache <- function(){ ## gives a inverse matrix to "m" value
+     m <- solve(x)} 
+   getcache <- function(){m} ## where m is stored
+   list(set = set, get = get,   ##store all element easy to find
         setcache = setcache,
         getcache = getcache)
 }
 
 
-## Write a short comment describing this function
 
-cacheSolve <- function(x, ...) {
-  m <- x$getcache
+cacheSolve <- function(x) {
+  m <<- solve(x$get())   ##give m value      
   if(!is.null(m)) {
-    message("getting cached data")
+    message("getting cached data") ## for sign 
     return(m)
   }
   data <- x$get()
